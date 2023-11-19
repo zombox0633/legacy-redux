@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
 import counterReducer from "./testState/testState.reducer";
+import getDataServiceReducer from "./getdataService/getDataService.reducer";
 
 const rootReducer = combineReducers({
   counter: counterReducer,
+  dataService: getDataServiceReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

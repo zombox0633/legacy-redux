@@ -3,8 +3,8 @@ import { decrement, increment } from "../redux/testState/testState.action";
 import { RootState } from "../redux/rootReducer";
 
 function useTestState() {
-  const count = useSelector((state: RootState) => state.counter.count);
   const dispatch = useDispatch();
+  const count = useSelector((state: RootState) => state.counter.count);
 
   const handleIncrement = () => {
     dispatch(increment(1));

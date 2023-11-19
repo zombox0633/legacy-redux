@@ -1,6 +1,6 @@
-import { CounterAction } from "./testState.type";
+import { CounterActionType } from "./testState.type";
 
-export const increment = (amount: number): CounterAction => {
+export const increment = (amount: number): CounterActionType => {
   return {
     // บอกการกระทำตามที่กำหนดใน reducer เพื่อใช้งานตามที่กำหนด
     type: "INCREMENT",
@@ -10,7 +10,7 @@ export const increment = (amount: number): CounterAction => {
   };
 };
 
-export const decrement = (amount: number): CounterAction => {
+export const decrement = (amount: number): CounterActionType => {
   return {
     type: "DECREMENT",
     payload: amount,

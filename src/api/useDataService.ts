@@ -9,9 +9,10 @@ import {
 } from "firebase/firestore";
 import db from "./firebase-config";
 import { DataServiceType, GetDataServiceReturnType } from "./DataService.type";
+import { FirebaseReturn } from "./serviceApi.type";
 
 export const getDataService =
-  async (): Promise<GetDataServiceReturnType | null> => {
+  async (): FirebaseReturn<GetDataServiceReturnType> => {
     try {
       const dataServiceCol = collection(db, "lodolist");
       const snapShot = await getDocs(dataServiceCol);
@@ -20,12 +21,13 @@ export const getDataService =
         id: doc.id,
       }));
 
-      return data;
+      return [data, null];
     } catch (error) {
-      console.error(error);
-      return null;
+      const errorMessage = error instanceof Error ? error.message : "Unknown error"
+      return [null, errorMessage];
     }
   };
+
 
 export const addDataService = async (messageText: string): Promise<boolean> => {
   try {
@@ -41,6 +43,7 @@ export const addDataService = async (messageText: string): Promise<boolean> => {
     return false;
   }
 };
+
 
 export const updateDataService = async (
   id: string,
@@ -59,6 +62,7 @@ export const updateDataService = async (
     return false;
   }
 };
+
 
 export const deleteDataService = async (id: string): Promise<boolean> => {
   try {

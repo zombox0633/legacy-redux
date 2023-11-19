@@ -72,12 +72,49 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.container__button_add{
+.background {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(26, 26, 26, 0.5);
+  z-index: 10;
+}
+
+.container__button_add {
   display: flex;
   justify-content: end;
 }
 
-.board__container{
+.message__form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 28rem;
+  height: 16rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background-color: aliceblue;
+  box-shadow: var(--shadow);
+  transform: translate(-50%, -50%);
+  z-index: 20;
+}
+
+.message__input {
+  background-color: white;
+  width: 20rem;
+  margin: 4px;
+  padding: 4px;
+  border: 1px solid #1a1a1a;
+  border-radius: 4px;
+  color: #1a1a1a;
+  font-size: 18px;
+}
+
+.message__input:focus {
+  border: 2px solid #1a1a1a;
+  outline: none;
+}
+
+.board__container {
   width: 40rem;
   min-height: 30rem;
   margin: 1rem 0;
@@ -85,4 +122,40 @@ button:focus-visible {
   border-radius: 8px;
   background-color: aliceblue;
   box-shadow: var(--shadow);
+}
+
+.item__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px;
+  padding: 6px 8px;
+  border: 1px solid rgba(26, 26, 26, 0.5);
+  border-radius: 8px;
+}
+
+.message__container {
+  display: flex;
+  align-items: center;
+  width: 20rem;
+  margin-left: 4px;
+}
+
+.message__container span,
+.message__container p {
+  margin: 4px;
+}
+
+.button__container {
+  display: flex;
+  justify-content: space-between;
+  width: 10rem;
+}
+
+.button__board{
+  width: 5rem;
+  margin: 2px;
+  padding: 8px;
+  font-size: 16px;
+  text-align: center;
 }

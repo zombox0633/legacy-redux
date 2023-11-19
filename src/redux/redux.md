@@ -2,23 +2,29 @@
 
 ถูกใช้ในการสร้าง Single Page Applications (SPAs) ที่มี state ที่ซับซ้อน, เช่น แอปพลิเคชั่นที่มีการแบ่งปัน state ระหว่างหลาย components หรือต้องมีการจัดการ state ที่เป็น asynchronous.
 
+
 ## install
 ลง npm install redux react-redux
-และลง npm install redux-thunk
+
+และ npm install @redux-devtools/extension ส่วนเสริมสำหรับทำการ debug หน้าเว็บ
 
 1.สร้าง reducer และ action ของสิ่งที่ต้องการจะเก็บหรือใช้งานกับ Redux
 ตาม testState.reducer กับ testState.action
 
-2. สร้าง rootReducer สำหรับการจัดการ State แบบ Modular และกำหรับ rootType ให้ใช้งานกับ useSelector ใช้ในส่วนการใช้งาน
+1. สร้าง rootReducer สำหรับการจัดการ State แบบ Modular และกำหรับ rootType ให้ใช้งานกับ useSelector ใช้ในส่วนการใช้งาน
 
-3. สร้าง store
+2. สร้าง store
 
-4. สร้าง Provider ใน main.tsx สำหรับใช้งาน redux
+3. สร้าง Provider ใน main.tsx สำหรับใช้งาน redux
 
-5. การใช้งาน testState ตาม usetestState
+4. การใช้งาน testState ตาม usetestState
+
 
 ## สรุปถ้าใช้งานเก็บค่าหรือใช้งานแบบง่ายๆไม่จำเป็นที่ใช้งาน redux-thunk
 
+1. การเพิ่ม npm i redux-thunk เพื่อใช้งานกับ Asynchronous Operations
+  โดยปกติ, Redux มีข้อจำกัดในการจัดการเฉพาะกับ actions ที่เป็น synchronous
+  Redux Thunk ช่วยให้คุณสามารถเขียน action creators ที่เป็น asynchronous ได้
 
 
 ## Redux Thunk
