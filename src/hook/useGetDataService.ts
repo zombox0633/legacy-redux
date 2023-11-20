@@ -1,25 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/rootReducer";
-import { fetchDataService } from "../redux/getdataService/getDataService.action";
+import { fetchDataService } from "../redux/getDataServic/getDataService.action";
 
 import { AppDispatch } from "../redux/store";
 
 function useGetDataService() {
   const dispatch = useDispatch<AppDispatch>();
   const { data } = useSelector((state: RootState) => state.dataService);
-
-  // const [dataService, setDataService] = useState<DataServiceType[] | null>(
-  //   null
-  // );
-  // const [fetchData, setFetchData] = useState<number>(0);
+  const [fetchData, setFetchData] = useState<number>(0);
 
   useEffect(() => {
     dispatch(fetchDataService());
-  }, [dispatch]);
+  }, [dispatch,fetchData]);
 
   return {
     data,
+    setFetchData
   };
 }
 

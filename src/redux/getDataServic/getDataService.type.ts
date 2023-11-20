@@ -1,12 +1,12 @@
 import { DataServiceType } from "../../api/DataService.type";
 
-export type DataServiceReducerType = {
+export type GetDataServiceReducerType = {
   data: DataServiceType[] | null;
   loading: boolean;
   error: string | null;
 };
 
-export type DataServiceActionType =
+export type GetDataServiceActionType =
   | GetDataRequestActionType
   | GetDataSuccessActionType
   | GetDataFailureActionType;

@@ -2,9 +2,11 @@ import { DataServiceType } from "../api/DataService.type";
 
 type BoardType = {
   data: DataServiceType[] | null;
+  onClickEdit: (id: string) => void;
+  handleDeleteMessage: (id: string) => void;
 };
 
-function Board({ data }: BoardType) {
+function Board({ data, onClickEdit, handleDeleteMessage }: BoardType) {
   return (
     <div className="board__container">
       <div style={{ margin: "1rem 0rem" }}>
@@ -18,8 +20,18 @@ function Board({ data }: BoardType) {
               <p>{item.message}</p>
             </div>
             <div className="button__container">
-              <button className="button__board">update</button>
-              <button className="button__board">delete</button>
+              <button
+                onClick={() => onClickEdit(item.id)}
+                className="button__board"
+              >
+                update
+              </button>
+              <button
+                onClick={() => handleDeleteMessage(item.id)}
+                className="button__board"
+              >
+                delete
+              </button>
             </div>
           </div>
         ))}

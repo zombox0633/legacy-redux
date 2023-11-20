@@ -1,14 +1,14 @@
-import { DataServiceActionType, DataServiceReducerType } from "./getDataService.type";
+import { GetDataServiceActionType, GetDataServiceReducerType } from "./getDataService.type";
 
-const dataServiceState:DataServiceReducerType = {
+const getDataServiceState:GetDataServiceReducerType = {
   data: [],
   loading: false,
   error: null,
 };
 
 const getDataServiceReducer = (
-  state = dataServiceState,
-  action: DataServiceActionType
+  state = getDataServiceState,
+  action: GetDataServiceActionType
 ) => {
   switch (action.type) {
     case "GET_DATA_REQUEST":

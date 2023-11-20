@@ -10,6 +10,7 @@ import {
 import db from "./firebase-config";
 import { DataServiceType, GetDataServiceReturnType } from "./DataService.type";
 import { FirebaseReturn } from "./serviceApi.type";
+import { CheckErrorMessage } from "../service/Service";
 
 export const getDataService =
   async (): FirebaseReturn<GetDataServiceReturnType> => {
@@ -23,13 +24,14 @@ export const getDataService =
 
       return [data, null];
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : "Unknown error"
+      const errorMessage = CheckErrorMessage(error);
       return [null, errorMessage];
     }
   };
 
-
-export const addDataService = async (messageText: string): Promise<boolean> => {
+export const addDataService = async (
+  messageText: string
+): FirebaseReturn<boolean> => {
   try {
     const dataServiceCol = collection(db, "lodolist");
     await addDoc(dataServiceCol, {
@@ -37,18 +39,18 @@ export const addDataService = async (messageText: string): Promise<boolean> => {
       timestamp: Timestamp.now(),
     });
 
-    return true;
+    return [true, null];
   } catch (error) {
     console.error(error);
-    return false;
+    const errorMessage = CheckErrorMessage(error);
+    return [null, errorMessage];
   }
 };
-
 
 export const updateDataService = async (
   id: string,
   messageText: string
-): Promise<boolean> => {
+): FirebaseReturn<boolean> => {
   try {
     const dataServiceDoc = doc(db, "lodolist", id);
     await updateDoc(dataServiceDoc, {
@@ -56,22 +58,25 @@ export const updateDataService = async (
       timestamp: Timestamp.now(),
     });
 
-    return true;
+    return [true, null];
   } catch (error) {
     console.error(error);
-    return false;
+    const errorMessage = CheckErrorMessage(error);
+    return [null, errorMessage];
   }
 };
 
-
-export const deleteDataService = async (id: string): Promise<boolean> => {
+export const deleteDataService = async (
+  id: string
+): FirebaseReturn<boolean> => {
   try {
     const dataServiceDoc = doc(db, "lodolist", id);
     await deleteDoc(dataServiceDoc);
 
-    return true;
+    return [true, null];
   } catch (error) {
     console.error(error);
-    return false;
+    const errorMessage = CheckErrorMessage(error);
+    return [null, errorMessage];
   }
 };

@@ -1,28 +1,41 @@
-import { useState } from "react";
 import Board from "./components/Board";
-import useGetDataService from "./hook/useGetDataService";
 import MessageForm from "./components/MessageForm";
+import useGetDataService from "./hook/useGetDataService";
+import useDataServiceAction from "./hook/useDataServiceAction";
 
 function App() {
-  const { data } = useGetDataService();
-
-  const [displayMessageForm, setDisplayMessageForm] = useState<boolean>(false);
-  const [isEdit, setIsEdit] = useState<boolean>(false);
-  const [EditId, setEditId] = useState<string | null>(null);
+  const { data, setFetchData } = useGetDataService();
+  const {
+    displayMessageForm,
+    EditId,
+    handleSubmit,
+    handleDeleteMessage,
+    onClickEdit,
+    handleBackground,
+    setDisplayMessageForm,
+    setMessage,
+  } = useDataServiceAction({ setFetchData });
 
   return (
     <div>
       {displayMessageForm && (
-        <div
-          onClick={() => setDisplayMessageForm(false)}
-          className="background"
+        <div onClick={handleBackground} className="background" />
+      )}
+      {displayMessageForm && (
+        <MessageForm
+          EditId={EditId}
+          handleSubmit={handleSubmit}
+          setMessage={setMessage}
         />
       )}
-      {displayMessageForm && <MessageForm />}
       <div className="container__button_add">
         <button onClick={() => setDisplayMessageForm(true)}>add +</button>
       </div>
-      <Board data={data}/>
+      <Board
+        data={data}
+        onClickEdit={onClickEdit}
+        handleDeleteMessage={handleDeleteMessage}
+      />
     </div>
   );
 }
