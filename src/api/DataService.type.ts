@@ -1,8 +1,13 @@
 export type DataServiceType = {
   id: string;
   message: string;
-  timestamp: string;
+  timestamp: Date;
 };
+
+export interface FirebaseTimestamp {
+  seconds: number;
+  nanoseconds: number;
+}
 
 export type GetDataServiceReturnType = DataServiceType[];
 

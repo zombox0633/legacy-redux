@@ -16,6 +16,9 @@ function App() {
     setMessage,
   } = useDataServiceAction({ setFetchData });
 
+  console.log(data);
+  
+
   return (
     <div>
       {displayMessageForm && (

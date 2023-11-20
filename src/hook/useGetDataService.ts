@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/rootReducer";
-import { fetchDataService } from "../redux/getDataServic/getDataService.action";
+import { fetchDataService } from "../redux/getDataService/getDataService.action";
 
 import { AppDispatch } from "../redux/store";
 

@@ -1,13 +1,15 @@
 import { combineReducers } from "redux";
 import counterReducer from "./testState/testState.reducer";
-import getDataServiceReducer from "./getDataServic/getDataService.reducer";
+import getDataServiceReducer from "./getDataService/getDataService.reducer";
 import { addDataServiceReducer } from "./addDataService/addDataService.reducer";
 import { deleteDataServiceReducer } from "./deleteDataService/deleteDataService.reducer";
+import { updateDataServiceReducer } from "./updateDataService/updateDataService.reducer";
 
 const rootReducer = combineReducers({
   counter: counterReducer,
   dataService: getDataServiceReducer,
   addDataService: addDataServiceReducer,
+  updateDataService: updateDataServiceReducer,
   deleteDataService: deleteDataServiceReducer,
 });
 

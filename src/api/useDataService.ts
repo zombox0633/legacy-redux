@@ -8,7 +8,11 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import db from "./firebase-config";
-import { DataServiceType, GetDataServiceReturnType } from "./DataService.type";
+import {
+  DataServiceType,
+  FirebaseTimestamp,
+  GetDataServiceReturnType,
+} from "./DataService.type";
 import { FirebaseReturn } from "./serviceApi.type";
 import { CheckErrorMessage } from "../service/Service";
 
@@ -17,10 +21,23 @@ export const getDataService =
     try {
       const dataServiceCol = collection(db, "lodolist");
       const snapShot = await getDocs(dataServiceCol);
-      const data = snapShot.docs.map((doc) => ({
-        ...(doc.data() as unknown as DataServiceType),
-        id: doc.id,
-      }));
+      const data = snapShot.docs.map((doc) => {
+        const docData = doc.data() as unknown as DataServiceType;
+
+        const firebaseTimestamp =
+          docData.timestamp as unknown as FirebaseTimestamp;
+
+        const timestamp =
+          firebaseTimestamp && firebaseTimestamp.seconds
+            ? new Date(firebaseTimestamp.seconds * 1000)
+            : new Date();
+
+        return {
+          ...docData,
+          id: doc.id,
+          timestamp,
+        };
+      });
 
       return [data, null];
     } catch (error) {
