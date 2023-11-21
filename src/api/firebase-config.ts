@@ -7,13 +7,13 @@ import { getFirestore } from "firebase/firestore";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDz3XT5lZs-Q0BAUrEH3xjh_hbF_qj3K9E",
-  authDomain: "testtodolist-706c6.firebaseapp.com",
-  projectId: "testtodolist-706c6",
-  storageBucket: "testtodolist-706c6.appspot.com",
-  messagingSenderId: "452592849684",
-  appId: "1:452592849684:web:ff5e16006c9fab9531a801",
-  measurementId: "G-W0GKGWP7KZ",
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
+  measurementId: import.meta.env.VITE_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
@@ -21,3 +21,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export default db;
+
+
+//การตั้งชื่อขึ้นต้นด้วย REACT_APP_ จะทำให้ชื่อตัวแปรแวดล้อมเพื่อให้ React สามารถอ่านมันได้
+//แต่ถ้าสร้างด้วย vite ในการเริ่มต้น project จะต้องใช้ด้วยชื่อ VITE_API_
